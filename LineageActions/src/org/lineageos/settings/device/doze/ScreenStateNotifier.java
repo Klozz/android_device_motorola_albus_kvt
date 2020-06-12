@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2016 The CyanogenMod Project
+ * Copyright (c) 2015 The CyanogenMod Project
+ * Copyright (c) 2017 The LineageOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,16 +15,9 @@
  * limitations under the License.
  */
 
-package org.lineageos.settings.device;
+package org.lineageos.settings.device.doze;
 
-import android.os.Bundle;
-import androidx.preference.PreferenceFragment;
-
-public class GestureSettingsFragment extends PreferenceFragment {
-
-    @Override
-    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-        addPreferencesFromResource(R.xml.actions_panel);
-    }
-
+public interface ScreenStateNotifier {
+    public void screenTurnedOn();
+    public void screenTurnedOff();
 }
