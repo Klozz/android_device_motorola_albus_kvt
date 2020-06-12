@@ -24,13 +24,13 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/product_launched_with_n_mr1.mk
 $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 
 #Inherit device configuration
-$(call inherit-product, device/motorola/sanders/device.mk)
+$(call inherit-product, device/motorola/albus/device.mk)
 
 # Device identifier. This must come after all inclusions.
-PRODUCT_NAME := lineage_sanders
-PRODUCT_DEVICE := sanders
+PRODUCT_NAME := lineage_albus
+PRODUCT_DEVICE := albus
 PRODUCT_BRAND := motorola
-PRODUCT_MODEL := Moto G5s Plus
+PRODUCT_MODEL := Moto Z2 Play
 PRODUCT_MANUFACTURER := motorola
 
 # Vendor security patch level

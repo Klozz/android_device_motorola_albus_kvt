@@ -13,10 +13,10 @@
 // limitations under the License.
 
 cc_binary {
-    name: "android.hardware.sensors@1.0-service.sanders",
+    name: "android.hardware.sensors@1.0-service.albus",
     relative_install_path: "hw",
     vendor: true,
-    init_rc: ["android.hardware.sensors@1.0-service.sanders.rc"],
+    init_rc: ["android.hardware.sensors@1.0-service.albus.rc"],
     defaults: ["hidl_defaults"],
     srcs: ["service.cpp"],
 

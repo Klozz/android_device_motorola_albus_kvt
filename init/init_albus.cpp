@@ -81,8 +81,8 @@ void vendor_load_properties()
     property_override_dual("ro.product.model", "ro.product.vendor.model", sku.c_str());
 
     // fingerprint
-    property_override("ro.build.description", "sanders-user 8.1.0 OPS28.65-36 9fea release-keys");
-    property_override_dual("ro.build.fingerprint", "ro.vendor.build.fingerprint", "motorola/sanders_retail/sanders:8.1.0/OPS28.65-36-14/63857:user/release-keys");
+    property_override("ro.build.description", "albus-user 8.1.0 OPS28.65-36 9fea release-keys");
+    property_override_dual("ro.build.fingerprint", "ro.vendor.build.fingerprint", "motorola/albus_retail/albus:8.1.0/OPS28.65-36-14/63857:user/release-keys");
 
     // rmt_storage
     std::string device = GetProperty("ro.boot.device", "");
