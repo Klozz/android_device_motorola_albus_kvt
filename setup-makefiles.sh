@@ -15,7 +15,7 @@
 
 set -e
 
-DEVICE=sanders
+DEVICE=albus
 VENDOR=motorola
 
 export INITIAL_COPYRIGHT_YEAR=2020
@@ -37,7 +37,7 @@ fi
 setup_vendor "$DEVICE" "$VENDOR" "$LINEAGE_ROOT" true
 
 # Copyright headers and guards
-write_headers "sanders"
+write_headers "albus"
 
 # The standard blobs
 write_makefiles "$MY_DIR"/proprietary-files.txt true
