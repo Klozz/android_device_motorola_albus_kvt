@@ -17,13 +17,12 @@
 
 package org.lineageos.settings.device;
 
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.UserHandle;
 import android.preference.PreferenceManager;
-import android.provider.Settings;
 
-import android.util.Log;
+import com.android.internal.hardware.AmbientDisplayConfiguration;
 
 import org.lineageos.settings.device.actions.UpdatedStateNotifier;
 import org.lineageos.settings.device.actions.CameraActivationAction;
@@ -67,20 +66,28 @@ public class LineageActionsSettings {
         return mChopChopEnabled;
     }
 
-    public static boolean isDozeEnabled(ContentResolver contentResolver) {
-        return (Settings.Secure.getInt(contentResolver, Settings.Secure.DOZE_ENABLED, 1) != 0);
+    public static boolean isAODEnabled(Context context) {
+        return new AmbientDisplayConfiguration(context).alwaysOnEnabled(UserHandle.USER_CURRENT);
+    }
+
+    public static boolean isDozeEnabled(Context context) {
+        return new AmbientDisplayConfiguration(context).pulseOnNotificationEnabled(UserHandle.USER_CURRENT);
+    }
+
+    public boolean isAODEnabled() {
+        return isAODEnabled(mContext);
     }
 
     public boolean isDozeEnabled() {
-        return isDozeEnabled(mContext.getContentResolver());
+        return isDozeEnabled(mContext);
     }
 
     public boolean isIrWakeupEnabled() {
-        return isDozeEnabled() && mIrWakeUpEnabled;
+        return isDozeEnabled() && !isAODEnabled() && mIrWakeUpEnabled;
     }
 
     public boolean isPickUpEnabled() {
-        return isDozeEnabled() && mPickUpGestureEnabled;
+        return isDozeEnabled() && !isAODEnabled() && mPickUpGestureEnabled;
     }
 
     public boolean isIrSilencerEnabled() {
@@ -108,9 +115,9 @@ public class LineageActionsSettings {
         mChopChopEnabled = sharedPreferences.getBoolean(GESTURE_CHOP_CHOP_KEY, true);
         mIrWakeUpEnabled = sharedPreferences.getBoolean(GESTURE_IR_WAKEUP_KEY, true);
         mPickUpGestureEnabled = sharedPreferences.getBoolean(GESTURE_PICK_UP_KEY, true);
-        mIrSilencerEnabled = sharedPreferences.getBoolean(GESTURE_IR_SILENCER_KEY, true);
-        mFlipToMuteEnabled = sharedPreferences.getBoolean(GESTURE_FLIP_TO_MUTE_KEY, true);
-        mLiftToSilenceEnabled = sharedPreferences.getBoolean(GESTURE_LIFT_TO_SILENCE_KEY, true);
+        mIrSilencerEnabled = sharedPreferences.getBoolean(GESTURE_IR_SILENCER_KEY, false);
+        mFlipToMuteEnabled = sharedPreferences.getBoolean(GESTURE_FLIP_TO_MUTE_KEY, false);
+        mLiftToSilenceEnabled = sharedPreferences.getBoolean(GESTURE_LIFT_TO_SILENCE_KEY, false);
     }
 
     private SharedPreferences.OnSharedPreferenceChangeListener mPrefListener =
@@ -128,11 +135,11 @@ public class LineageActionsSettings {
             } else if (GESTURE_PICK_UP_KEY.equals(key)) {
                 mPickUpGestureEnabled = sharedPreferences.getBoolean(GESTURE_PICK_UP_KEY, true);
             } else if (GESTURE_IR_SILENCER_KEY.equals(key)) {
-                mIrSilencerEnabled = sharedPreferences.getBoolean(GESTURE_IR_SILENCER_KEY, true);
+                mIrSilencerEnabled = sharedPreferences.getBoolean(GESTURE_IR_SILENCER_KEY, false);
             } else if (GESTURE_FLIP_TO_MUTE_KEY.equals(key)) {
-                mFlipToMuteEnabled = sharedPreferences.getBoolean(GESTURE_FLIP_TO_MUTE_KEY, true);
+                mFlipToMuteEnabled = sharedPreferences.getBoolean(GESTURE_FLIP_TO_MUTE_KEY, false);
             } else if (GESTURE_LIFT_TO_SILENCE_KEY.equals(key)) {
-                mLiftToSilenceEnabled = sharedPreferences.getBoolean(GESTURE_LIFT_TO_SILENCE_KEY, true);
+                mLiftToSilenceEnabled = sharedPreferences.getBoolean(GESTURE_LIFT_TO_SILENCE_KEY, false);
             } else {
                 updated = false;
             }
