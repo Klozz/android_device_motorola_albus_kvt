@@ -151,6 +151,11 @@ PRODUCT_SHIPPING_API_LEVEL := 25
 BOARD_PROPERTY_OVERRIDES_SPLIT_ENABLED := true
 BOARD_VNDK_VERSION := current
 PRODUCT_TREBLE_LINKER_NAMESPACES=true
+BOARD_VNDK_RUNTIME_DISABLE := true
+#SELinux
+include device/qcom/sepolicy/sepolicy.mk
+BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor
+SELINUX_IGNORE_NEVERALLOWS := true
 
 #SELinux
 include device/qcom/sepolicy/sepolicy.mk

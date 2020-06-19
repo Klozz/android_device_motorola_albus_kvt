@@ -138,6 +138,7 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     android.hardware.gnss@1.0-impl-qti \
+    android.hardware.gnss@1.0-impl \
     android.hardware.gnss@1.0-service-qti
     
 PRODUCT_COPY_FILES += \
@@ -298,7 +299,9 @@ PRODUCT_PACKAGES += \
 
 
 PRODUCT_COPY_FILES += \
-     $(LOCAL_PATH)/rootdir/ueventd.qcom.rc:$(TARGET_COPY_OUT_VENDOR)/ueventd.rc
+     $(LOCAL_PATH)/rootdir/ueventd.qcom.rc:$(TARGET_COPY_OUT_VENDOR)/ueventd.rc \
+     $(LOCAL_PATH)/rootdir/fstab.qcom:$(TARGET_COPY_OUT_RAMDISK)/fstab.qcom 
+     
 
 # Releasetools script
 PRODUCT_COPY_FILES += \
