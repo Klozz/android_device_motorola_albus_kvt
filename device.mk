@@ -69,20 +69,25 @@ TARGET_SCREEN_HEIGHT := 1920
 
 # Camera
 PRODUCT_PACKAGES += \
-    android.hardware.camera.provider@2.4-impl \
-    android.hardware.camera.provider@2.4-service
-
-PRODUCT_PACKAGES += \
+    libbson \
+    camera.device@1.0-impl \
+    camera.device@3.2-impl:32 \
+    android.hardware.camera.provider@2.4-impl:32 \
+    android.hardware.camera.provider@2.4-service \
+    vendor.qti.hardware.camera.device@1.0 \
+    vendor.qti.hardware.camera.device@1.0_vendor \
+    libjustshoot_shim \
+    libgui_vendor \
     Snap
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/camera/imx219_chromatix.xml:system/etc/camera/imx219_chromatix.xml \
-    $(LOCAL_PATH)/configs/camera/mot_imx258_bear_chromatix.xml:system/etc/camera/mot_imx258_bear_chromatix.xml \
-    $(LOCAL_PATH)/configs/camera/mot_imx258_mono_chromatix.xml:system/etc/camera/mot_imx258_mono_chromatix.xml \
-    $(LOCAL_PATH)/configs/camera/mot_s5k3l8_bear_chromatix.xml:system/etc/camera/mot_s5k3l8_bear_chromatix.xml \
-    $(LOCAL_PATH)/configs/camera/mot_s5k3l8_mono_chromatix.xml:system/etc/camera/mot_s5k3l8_mono_chromatix.xml \
-    $(LOCAL_PATH)/configs/camera/msm8953_mot_albus_camera.xml:system/etc/camera/msm8953_mot_albus_camera.xml \
-    $(LOCAL_PATH)/configs/camera/s5k4h8_chromatix.xml:system/etc/camera/s5k4h8_chromatix.xml    
+    $(LOCAL_PATH)/configs/camera/msm8953_mot_potter_camera.xml:system/etc/camera/msm8953_mot_potter_camera.xml \
+    $(LOCAL_PATH)/configs/camera/mot_ov5695_chromatix.xml:system/etc/camera/mot_ov5695_chromatix.xml \
+    $(LOCAL_PATH)/configs/camera/mot_imx362_chromatix.xml:system/etc/camera/mot_imx362_chromatix.xml \
+    $(LOCAL_PATH)/configs/camera/mot_s5k2l7_chromatix.xml:system/etc/camera/mot_s5k2l7_chromatix.xml \
+    $(LOCAL_PATH)/configs/camera/mot_s5k2l7sa_chromatix.xml:system/etc/camera/mot_s5k2l7sa_chromatix.xml \
+    $(LOCAL_PATH)/configs/camera/vfwconfig.json:system/etc/camera/vfwconfig.json \
+    $(LOCAL_PATH)/configs/external_camera_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/external_camera_config.xml
 
 # Configstore
 PRODUCT_PACKAGES += \
