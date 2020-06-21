@@ -57,6 +57,12 @@ TARGET_USES_64_BIT_BINDER := true
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(DEVICE_PATH)/bluetooth
 BOARD_HAVE_BLUETOOTH_QCOM := true
 
+
+# Camera
+# TARGET_CAMERASERVICE_CLOSES_NATIVE_HANDLES := true
+USE_DEVICE_SPECIFIC_CAMERA := true
+BOARD_QTI_CAMERA_32BIT_ONLY := true
+
 # Dexpreopt
 # Enable dex-preoptimization to speed up first boot sequence
 ifeq ($(HOST_OS),linux)
@@ -162,6 +168,11 @@ BOARD_VNDK_RUNTIME_DISABLE := true
 include device/qcom/sepolicy/sepolicy.mk
 BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor
 SELINUX_IGNORE_NEVERALLOWS := true
+
+TARGET_LD_SHIM_LIBS := \
+  $(TARGET_COPY_OUT_VENDOR)/bin/adspd|libshim_adsp.so \
+  $(TARGET_COPY_OUT_VENDOR)/lib64/libmdmcutback.so|libqsap_shim.so \
+  $(TARGET_COPY_OUT_VENDOR)/lib/libjustshoot.so|libjustshoot_shim.so
 
 # Wifi
 BOARD_HAS_QCOM_WLAN              := true
